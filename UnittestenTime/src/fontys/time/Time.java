@@ -41,7 +41,8 @@ public class Time implements ITime {
             throw new IllegalArgumentException("minutes must be within 0..59");
         }
         
-        gc = new GregorianCalendar(y, m , d, h, min);
+        //java begint maanden te nummeren vanaf 0, dus we halen 1 van de maand af, en tellen die er bij getMonth weer bij op
+        gc = new GregorianCalendar(y, m-1, d, h, min);
     }
 
     Time(Time t) {
@@ -50,7 +51,7 @@ public class Time implements ITime {
 
     @Override
     public DayInWeek getDayInWeek() {
-        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);
+        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);                
         switch (day_of_week) {
             case GregorianCalendar.SUNDAY:
                 return DayInWeek.SUN;
@@ -78,7 +79,7 @@ public class Time implements ITime {
 
     @Override
     public int getMonth() {
-        return gc.get(GregorianCalendar.MONTH) + 1;
+        return gc.get(GregorianCalendar.MONTH) +1 ;
     }
 
     @Override
@@ -112,6 +113,7 @@ public class Time implements ITime {
     @Override
     public int difference(ITime time) {
         Time t = (Time) time;
-        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 600000);
+        //600000 is een factor 10 te groot en moet 60000 zijn om ms naar minuten om te rekenen
+        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
     }
 }

@@ -46,7 +46,7 @@ public class TimeTest {
     public void testGetDayInWeek() {
         System.out.println("getDayInWeek");
         //test monday
-        testTime = new Time(2017, 10, 2, 12, 30);
+        testTime = new Time(2017, 9, 4, 12, 30);
         DayInWeek result = testTime.getDayInWeek();
         DayInWeek expectedResult = DayInWeek.MON;
         assertEquals(expectedResult, result);
