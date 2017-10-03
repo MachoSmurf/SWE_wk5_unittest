@@ -210,13 +210,26 @@ public class TimeTest {
     @Test
     public void testDifference() {      
         System.out.println("difference");
-        ITime baseTime = new Time(2017, 10, 3, 12, 29);
-        
-        ITime instance = new Time(2017, 10, 3, 12, 30);
-        int expResult = 10;
-        int result = baseTime.difference(instance);
+        //normal result
+        Time baseTime = new Time(2017, 10, 3, 12, 31);        
+        ITime otherTime = new Time(2017, 10, 3, 12, 30);
+        int result = baseTime.difference(otherTime);
+        int expResult = 1;
         assertEquals(expResult, result);
         
+        //reverse result
+        baseTime = new Time(2017, 10, 3, 12, 30);        
+        otherTime = new Time(2017, 10, 3, 12, 31);
+        result = baseTime.difference(otherTime);
+        expResult = -1;
+        assertEquals(expResult, result);
+        
+        //no difference
+        baseTime = new Time(2017, 10, 3, 12, 30);        
+        otherTime = new Time(2017, 10, 3, 12, 30);
+        result = baseTime.difference(otherTime);
+        expResult = 0;
+        assertEquals(expResult, result);
     }
     
 }
