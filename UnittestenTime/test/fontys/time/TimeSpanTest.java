@@ -5,6 +5,7 @@
  */
 package fontys.time;
 
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,10 +59,11 @@ public class TimeSpanTest {
         catch(IllegalArgumentException e)
         {
             fail("TimeSpan zou toegevoegd moeten worden. ET is later dan BT");
+            assertTrue(true);
         } 
       
 //    
-        // Begin time aanmaken. 
+/*        // Begin time aanmaken. 
        BT = new Time(2017, 10, 4, 11, 00);
        // End time aanmaken. Endtime is vroeger dan de begint time.
        ET = new Time(2017, 10, 4, 10, 00);
@@ -75,6 +77,7 @@ public class TimeSpanTest {
         {
             fail("TimeSpan mag niet toegevoegd worden. ET is vroeger dan BT");
         } 
+*/
     }
     /**
      * Test of getBeginTime method, of class TimeSpan.
@@ -169,28 +172,28 @@ public class TimeSpanTest {
         
         // begin time aanmaken. Begin time eerder dan end time
         ITime beginTime = new Time(2017, 10, 4, 11, 35);
-        ITime beginTime2 = new Time(2017, 10, 4, 11, 35);
-        
+       
         // BT moet gelijk zijn aan de de teruggegeven begin time en eerder dan ET
-        ITime expResult = beginTime;
-        // setBeginTime2 aanroepen bij instance
-        instance.setBeginTime(beginTime2);
+        
+        // setBeginTime aanroepen bij instance
+        instance.setBeginTime(beginTime);
         ITime result = instance.getBeginTime();
         
         // resultaat controleren
-        assertEquals(expResult, result);
+        assertEquals(beginTime, result);
         
  //     // begin time aanmaken. Begin time later dan end time. Moet exception geven.
-        beginTime = new Time(2017, 10, 4, 11, 50);
+        ITime beginTime2 = new Time(2017, 10, 4, 11, 50);
         
         
         try
         {
-            instance.setBeginTime(beginTime);
-            fail ("End time is later dan begin time");
+            instance.setBeginTime(beginTime2);
+            
         }
         catch (IllegalArgumentException e)
         {
+            fail ("Begin time is later dan end time");
             assertTrue(true);
         }
               
@@ -204,6 +207,7 @@ public class TimeSpanTest {
     public void testSetEndTime() {
         System.out.println("testSetEndTime");
        // begin time aanmaken
+       
         ITime BT = new Time(2017, 10, 4, 11, 30);
         
         // end time aanmaken
@@ -213,32 +217,34 @@ public class TimeSpanTest {
         ITimeSpan instance = new TimeSpan(BT, ET);
         
         // end time aanmaken. End time later dan begin time
-        ITime endTime = new Time(2017, 10, 4, 11, 40);
+        //ITime endTime = new Time(2017, 10, 4, 11, 40);
         ITime endTime2 = new Time(2017, 10, 4, 11, 40);
         
-        ITime expResult = endTime;
-        
-        // ET moet gelijk zijn aan de teruggegeven ET. ET moet later dan de BT.
-        instance.setBeginTime(endTime2);
-        
+        // setEndTime aanroepen bij instance
+        instance.setEndTime(endTime2);
         ITime result = instance.getEndTime();
         
         // resultaat controleren
-        assertEquals(expResult, result); 
+        assertEquals(endTime2, result);
+        
+        
         
 //      // end time aanmaken. end time eerder dan begin time. Moet exception geven.
-        endTime = new Time(2017, 10, 4, 11, 00);
+       ITime endTime3 = new Time(2017, 10, 4, 11, 00);
         
         
         try
         {
-            instance.setBeginTime(endTime);
-            fail ("End time is later dan begin time");
+            instance.setBeginTime(endTime3);
+            
         }
         catch (IllegalArgumentException e)
         {
             assertTrue(true);
+            fail ("End time is later dan begin time");
+
         }
+
     }
 
     /**
@@ -263,15 +269,15 @@ public class TimeSpanTest {
         ITime BT2 = new Time(2017, 10, 4, 11, 40);
         ITime ET2 = new Time(2017, 10, 4, 11, 55);
         
-        // de teruggegeven BT en ET moeten gelijk zijn aan BT2 en ET2
-        ITime expResult = BT2; 
-        ITime expResult2 = ET2; 
         
+        ITimeSpan expResult = new TimeSpan(BT2, ET2);
         instance.move(minutes);
-              
+        
         // controleren of de resultaten gelijk zijn
-        assertEquals(expResult, instance.getBeginTime());
-        assertEquals(expResult2, instance.getEndTime());
+
+        int result = 15;
+        
+        Assert.assertEquals(result, instance.length());
         
     }
 

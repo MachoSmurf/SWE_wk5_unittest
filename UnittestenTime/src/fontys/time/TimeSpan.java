@@ -63,12 +63,14 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public void setEndTime(ITime endTime) {
+        System.out.println("GG"+endTime);
+        System.out.println(endTime.compareTo(bt) >= 0);
         if (endTime.compareTo(bt) >= 0) {
             throw new IllegalArgumentException("end time "
                     + et + " must be later then begin time " + bt);
         }
 
-        bt = endTime;
+        et = endTime;
     }
 
     @Override
