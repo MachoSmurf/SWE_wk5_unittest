@@ -92,40 +92,52 @@ public class TimeSpan implements ITimeSpan {
                 && getEndTime().compareTo(timeSpan.getEndTime()) <= 0);
     }
 
+    
+    
+       /**
+     * 
+     * @param timeSpan
+     * @return if this time span and [timeSpan] are consecutive or possess a
+     * common intersection, then the smallest time span ts will be returned, 
+     * whereby this time span and [timeSpan] are part of ts, 
+     * otherwise null will be returned 
+     */
     @Override
     public ITimeSpan unionWith(ITimeSpan timeSpan) {
-        if (bt.compareTo(timeSpan.getEndTime()) > 0 || et.compareTo(timeSpan.getBeginTime()) < 0) {
+        if (bt.compareTo(timeSpan.getEndTime()) >= 0 || et.compareTo(timeSpan.getBeginTime()) <= 0) {
             return null;
         }
         
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) <= 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
 
-        if (et.compareTo(timeSpan.getEndTime()) > 0) {
+        if (et.compareTo(timeSpan.getEndTime()) >= 0) {
             endtime = et;
         } else {
             endtime = timeSpan.getEndTime();
         }
 
         return new TimeSpan(begintime, endtime);
-
+            
+        
+        
     }
 
     @Override
     public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
 
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) >= 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
 
-        if (et.compareTo(timeSpan.getEndTime()) < 0) {
+        if (et.compareTo(timeSpan.getEndTime()) <= 0) {
             endtime = et;
         } else {
             endtime = timeSpan.getEndTime();

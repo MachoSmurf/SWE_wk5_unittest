@@ -78,7 +78,7 @@ public class Time implements ITime {
 
     @Override
     public int getMonth() {
-        return gc.get(GregorianCalendar.MONTH) + 1;
+        return gc.get(GregorianCalendar.MONTH);
     }
 
     @Override
