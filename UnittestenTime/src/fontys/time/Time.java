@@ -79,7 +79,11 @@ public class Time implements ITime {
 
     @Override
     public int getMonth() {
+<<<<<<< HEAD
         return gc.get(GregorianCalendar.MONTH) +1 ;
+=======
+        return gc.get(GregorianCalendar.MONTH);
+>>>>>>> 3597044540129ba891c97f328e1db7dbe64985ae
     }
 
     @Override
@@ -113,7 +117,10 @@ public class Time implements ITime {
     @Override
     public int difference(ITime time) {
         Time t = (Time) time;
+<<<<<<< HEAD
         //600000 is een factor 10 te groot en moet 60000 zijn om ms naar minuten om te rekenen
+=======
+>>>>>>> 3597044540129ba891c97f328e1db7dbe64985ae
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
     }
 }
