@@ -5,7 +5,7 @@
  */
 package fontys.time;
 
-import java.util.Objects;
+
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -33,12 +33,13 @@ public class TimeSpanTest {
     
     @Before
     public void setUp() {
+  
     }
     
     @After
     public void tearDown() {
     }
-
+    
     /**
      * Test of getBeginTime method, of class TimeSpan.
      */
@@ -423,133 +424,81 @@ public class TimeSpanTest {
     /**
      * Test of unionWith method, of class TimeSpan.
      */
-    @Test // TO DO 6-10 werkt nog niet!
+    @Test 
     public void testUnionWith() {
         System.out.println("testUnionWith");
+    
+        // Begin end eind time aanmaken ZONDER OVERLAP
+        Time BT = new Time(2017, 10, 4, 15, 00);
+        Time ET = new Time(2017, 10, 4, 20, 00);      
         
-        // begin en end time aanmaken
-        ITime BT1 = new Time(2017, 10, 4, 11, 00);
-        ITime ET1 = new Time(2017, 10, 4, 17, 00);
+        Time BT2 = new Time(2017, 10, 4, 21, 00);
+        Time ET2 = new Time(2017, 10, 4, 22, 00);  
         
-        ITime BT2 = new Time(2017, 10, 4, 18, 00);
-        ITime ET2 = new Time(2017, 10, 4, 22, 00);
+        TimeSpan instance = new TimeSpan(BT, ET);
+        TimeSpan timeSpan  = new TimeSpan(BT2, ET2);
         
-        // timespan en instance aanmaken
-        ITimeSpan instance = new TimeSpan(BT1, ET1);
-        ITimeSpan timeSpan = new TimeSpan(BT2, ET2);
-        
-//      // resultaat controleren tijd na ET 
+ //     resultaat controleren ZONDER OVERLAP
         ITimeSpan expResult = null;
         ITimeSpan result = instance.unionWith(timeSpan);
-        assertEquals(expResult, result); 
-       
-//      // nieuwe begin en end time aanmaken
+      
+        assertEquals(expResult, result);
+        
+        // Begin end eind time aanmaken doorlopend aan ET
+        BT = new Time(2017, 10, 4, 15, 00);
+        ET = new Time(2017, 10, 4, 20, 00);
 
-        ITime BT3 = new Time(2017, 10, 4, 11, 00);
-        ITime ET3 = new Time(2017, 10, 4, 17, 00);
-         
-        ITime BT4 = new Time(2017, 10, 4, 9, 00);
-        ITime ET4 = new Time(2017, 10, 4, 11, 00);
-        
-        // timespan en instance aanmaken
-         instance = new TimeSpan(BT3, ET3);
-         timeSpan = new TimeSpan(BT4, ET4);
-        
-//      // resultaat controleren tijd aansluitend aan BT
-        ITimeSpan result2 = instance.unionWith(timeSpan);
-        
-        ITimeSpan expResult2 = null;
-        
-        assertEquals(result2, expResult2);
-  
-//      nieuwe begin en end time aanmaken
-
-         ITime BT5 = new Time(2017, 10, 4, 11, 00);
-         ITime ET5 = new Time(2017, 10, 4, 17, 00);
-         
-         ITime BT6 = new Time(2017, 10, 4, 9, 00);
-         ITime ET6 = new Time(2017, 10, 4, 11, 30);
-        
-        // timespan en instance aanmaken
-         instance = new TimeSpan(BT5, ET5);
-         timeSpan = new TimeSpan(BT6, ET6);
-        
-//      // resultaat controleren tijd met 30 min overlap met BT
-        result = instance.unionWith(timeSpan);
-        System.out.println(result + " a");
-     
-        ITimeSpan testResult = new TimeSpan(BT6, ET5);
-        
-        
-        assertEquals(testResult, result);
-        
-    /*
-//      nieuwe begin en end time aanmaken
-
-         BT = new Time(2017, 10, 4, 11, 00);
-         ET = new Time(2017, 10, 4, 17, 00);
-         
-         BT2 = new Time(2017, 10, 4, 12, 00);
-         ET2 = new Time(2017, 10, 4, 13, 00);
-        
-        // timespan en instance aanmaken
-         timeSpan = new TimeSpan(BT, ET);
-         instance = new TimeSpan(BT2, ET2);
-        
-//      // resultaat controleren tijd tussen BT en ET
-        expResultBT = new Time(2017, 10, 4, 11, 00);
-        expResultET = new Time(2017, 10, 4, 17, 00);
-        tsExp = new TimeSpan(expResultBT, expResultET);
-        
-        result = instance.unionWith(timeSpan);
-        assertEquals(result.getBeginTime(), tsExp.getBeginTime());
-        assertEquals(result.getEndTime(), tsExp.getEndTime());
-        
-//      nieuwe begin en end time aanmaken
-
-         BT = new Time(2017, 10, 4, 11, 00);
-         ET = new Time(2017, 10, 4, 17, 00);
-         
-         BT2 = new Time(2017, 10, 4, 10, 00);
-         ET2 = new Time(2017, 10, 4, 18, 00);
-        
-        // timespan en instance aanmaken
-         timeSpan = new TimeSpan(BT, ET);
-         instance = new TimeSpan(BT2, ET2);
-        
-        // resultaat controleren tijd buiten BT en ET
-         expResultBT = new Time(2017, 10, 4, 10, 00);
-         expResultET = new Time(2017, 10, 4, 18, 00);
-         tsExp = new TimeSpan(expResultBT, expResultET);
-        
-        result = instance.unionWith(timeSpan);
-        assertEquals(result.getBeginTime(), tsExp.getBeginTime());
-        assertEquals(result.getEndTime(), tsExp.getEndTime());
-        
-//      nieuwe begin en end time aanmaken
-
-         BT = new Time(2017, 10, 4, 11, 00);
-         ET = new Time(2017, 10, 4, 17, 00);
-         
-         BT2 = new Time(2017, 10, 4, 17, 00);
-         ET2 = new Time(2017, 10, 4, 20, 00);
-        
-        // timespan en instance aanmaken
-         timeSpan = new TimeSpan(BT, ET);
-         instance = new TimeSpan(BT2, ET2);
-        
-//       // resultaat controleren tijd aansluitend aan ET
-         expResultBT = new Time(2017, 10, 4, 11, 00);
-         expResultET = new Time(2017, 10, 4, 20, 00);
-         tsExp = new TimeSpan(expResultBT, expResultET);
-        
-        result = instance.unionWith(timeSpan);
-        assertEquals(result.getBeginTime(), tsExp.getBeginTime());
-        assertEquals(result.getEndTime(), tsExp.getEndTime());
+        BT2 = new Time(2017, 10, 4, 20, 00);
+        ET2 = new Time(2017, 10, 4, 22, 00);
             
-     */
+        instance = new TimeSpan(BT, ET);
+        timeSpan = new TimeSpan(BT2, ET2);
+
+ //     resultaat controleren AANSLUITEND AAN ET  
+        ITimeSpan expResult1 = null;
+        ITimeSpan result1 = instance.unionWith(timeSpan);
+      
+        assertEquals(expResult1, result1);
+        
+//      // Begin end eind time aanmaken OVERLAP MET ET
+        BT = new Time(2017, 10, 4, 15, 00);
+        ET = new Time(2017, 10, 4, 20, 00);
+
+        BT2 = new Time(2017, 10, 4, 18, 00);
+        ET2 = new Time(2017, 10, 4, 22, 00);
+            
+        timeSpan = new TimeSpan(BT, ET);
+        instance = new TimeSpan(BT2, ET2);
+
+        result = instance.unionWith(timeSpan);
+        
+//      // resultaat controlern tijd met OVERLAP MET ET
+        ITime resultBt = result.getBeginTime();
+        ITime resultEt = result.getEndTime();
+        
+        assertEquals(resultBt.toString(), BT2.toString());
+        assertEquals(resultEt.toString(), ET.toString());
+        
+//      // Begin end eind time aanmaken tijd TUSSEN BT EN ET
+        BT = new Time(2017, 10, 4, 15, 00);
+        ET = new Time(2017, 10, 4, 20, 00);
+
+        BT2 = new Time(2017, 10, 4, 16, 00);
+        ET2 = new Time(2017, 10, 4, 18, 00);
+            
+        timeSpan = new TimeSpan(BT, ET);
+        instance = new TimeSpan(BT2, ET2);
+
+        result = timeSpan.unionWith(instance);
+        
+      // resultaat controlern tijd met TUSSEN BT EN ET
+        ITime resultBt1 = result.getBeginTime();
+        ITime resultEt1 = result.getEndTime();
+        
+        assertEquals(resultBt1.toString(), BT2.toString());
+        assertEquals(resultEt1.toString(), ET2.toString());  
+
     }
-    
     
 
     /*
@@ -560,77 +509,126 @@ public class TimeSpanTest {
     @Test 
     public void testIntersectionWith() {
         System.out.println("testIntersectionWith");
-
-        // Begin end eind time aanmaken zonder overlap
-        Time BT = new Time(2017, 10, 4, 15, 00);
-        Time ET = new Time(2017, 10, 4, 20, 00);      
+ //     // begin en end time aanmaken
+        ITime BT1 = new Time(2017, 10, 4, 11, 00);
+        ITime ET1 = new Time(2017, 10, 4, 17, 00);
         
-        Time BT2 = new Time(2017, 10, 4, 21, 00);
-        Time ET2 = new Time(2017, 10, 4, 22, 00);  
+        ITime BT2 = new Time(2017, 10, 4, 18, 00);
+        ITime ET2 = new Time(2017, 10, 4, 22, 00);
         
-        TimeSpan instance = new TimeSpan(BT, ET);
-        TimeSpan timeSpan  = new TimeSpan(BT2, ET2);
+        // timespan en instance aanmaken
+        ITimeSpan instance = new TimeSpan(BT1, ET1);
+        ITimeSpan timeSpan = new TimeSpan(BT2, ET2);
         
- //     resultaat controleren zonder overlap
+//      // resultaat controleren TIJD NA ET 
         ITimeSpan expResult = null;
         ITimeSpan result = instance.intersectionWith(timeSpan);
-        assertEquals(expResult, result);
-        
-        // Begin end eind time aanmaken doorlopend aan ET
-        BT = new Time(2017, 10, 4, 15, 00);
-        ET = new Time(2017, 10, 4, 20, 00);
+        assertEquals(expResult, result); 
+     
+//      // nieuwe begin en end time aanmaken
 
-        BT2 = new Time(2017, 10, 4, 20, 00);
-        ET2 = new Time(2017, 10, 4, 22, 00);
-            
-        timeSpan = new TimeSpan(BT, ET);
-        instance = new TimeSpan(BT2, ET2);
+        ITime BT3 = new Time(2017, 10, 4, 11, 00);
+        ITime ET3 = new Time(2017, 10, 4, 17, 00);
+         
+        ITime BT4 = new Time(2017, 10, 4, 9, 00);
+        ITime ET4 = new Time(2017, 10, 4, 11, 00);
+        
+        // timespan en instance aanmaken
+        instance = new TimeSpan(BT3, ET3);
+        timeSpan = new TimeSpan(BT4, ET4);
+     
+        
+//      // resultaat controleren tijd AANSLUITEND AAN BT
+        expResult = null;
+        ITimeSpan result1 = instance.intersectionWith(timeSpan);
+        assertEquals(expResult, result1); 
+   
+//      nieuwe begin en end time aanmaken
 
- //     resultaat controleren doorlopend aan ET      
-        result = timeSpan.intersectionWith(instance);
+         ITime BT5 = new Time(2017, 10, 4, 11, 00);
+         ITime ET5 = new Time(2017, 10, 4, 17, 00);
+         
+         ITime BT6 = new Time(2017, 10, 4, 9, 00);
+         ITime ET6 = new Time(2017, 10, 4, 11, 30);
         
-        assertNull(result);
+        // timespan en instance aanmaken
+        instance = new TimeSpan(BT5, ET5);
+        timeSpan = new TimeSpan(BT6, ET6);
+       
+//      // resultaat controleren TIJD MET 30MIN OVERLAP BT
+        ITimeSpan result2 = instance.intersectionWith(timeSpan);
         
-//      // Begin end eind time aanmaken overlap aan ET
-        BT = new Time(2017, 10, 4, 15, 00);
-        ET = new Time(2017, 10, 4, 20, 00);
+        ITime resultBt2 = result2.getBeginTime();
+        ITime resultEt2 = result2.getEndTime();
 
-        BT2 = new Time(2017, 10, 4, 18, 00);
-        ET2 = new Time(2017, 10, 4, 22, 00);
-            
-        timeSpan = new TimeSpan(BT, ET);
-        instance = new TimeSpan(BT2, ET2);
+        assertEquals(resultBt2.toString(), BT6.toString());
+        assertEquals(resultEt2.toString(), ET5.toString());
+  
+    
+//      nieuwe begin en end time aanmaken
 
-        result = timeSpan.intersectionWith(instance);
- 
-//      // resultaat controlern tijd met overlap met ET
-        Time ExpResultBT = new Time(2017, 10, 4, 18, 00);
-        Time ExpResultET = new Time(2017, 10, 4, 20, 00);
-        TimeSpan tsExp = new TimeSpan(ExpResultBT, ExpResultET);
+         BT1 = new Time(2017, 10, 4, 11, 00);
+         ET1 = new Time(2017, 10, 4, 17, 00);
+         
+         BT2 = new Time(2017, 10, 4, 12, 00);
+         ET2 = new Time(2017, 10, 4, 13, 00);
         
-        assertEquals(result.getBeginTime(), tsExp.getBeginTime());
-        assertEquals(result.getEndTime(), tsExp.getEndTime());  
+        // timespan en instance aanmaken
+         instance = new TimeSpan(BT1, ET1);
+         timeSpan = new TimeSpan(BT2, ET2);
         
-//      // Begin end eind time aanmaken tijd tussen BT en ET
-        BT = new Time(2017, 10, 4, 15, 00);
-        ET = new Time(2017, 10, 4, 20, 00);
+//      // resultaat controleren TIJD TUSSEN BT EN ET
+        result = instance.intersectionWith(timeSpan);
+        
+        ITime resultBt3 = result.getBeginTime();
+        ITime resultEt3 = result.getEndTime();
 
-        BT2 = new Time(2017, 10, 4, 16, 00);
-        ET2 = new Time(2017, 10, 4, 18, 00);
-            
-        timeSpan = new TimeSpan(BT, ET);
-        instance = new TimeSpan(BT2, ET2);
+        assertEquals(resultBt3.toString(), BT1.toString());
+        assertEquals(resultEt3.toString(), ET1.toString());
+        
+     
+//      nieuwe begin en end time aanmaken
 
-        result = timeSpan.intersectionWith(instance);
+        ITime BT7 = new Time(2017, 10, 4, 11, 00);
+        ITime ET7 = new Time(2017, 10, 4, 17, 00);
+         
+        ITime BT8 = new Time(2017, 10, 4, 10, 00);
+        ITime ET8 = new Time(2017, 10, 4, 18, 00);
         
-      // resultaat controlern tijd met tussen BT en ET
-        ExpResultBT = new Time(2017, 10, 4, 16, 00);
-        ExpResultET = new Time(2017, 10, 4, 18, 00);
-        tsExp = new TimeSpan(ExpResultBT, ExpResultET);
+        // timespan en instance aanmaken
+        timeSpan = new TimeSpan(BT7, ET7);
+        instance = new TimeSpan(BT8, ET8);
         
-        assertEquals(result.getBeginTime(), tsExp.getBeginTime());
-        assertEquals(result.getEndTime(), tsExp.getEndTime());  
+        // resultaat controleren TIJD BUITEN BT EN ET
+        result = instance.intersectionWith(timeSpan);
+        
+        ITime resultBt4 = result.getBeginTime();
+        ITime resultEt4 = result.getEndTime();
+
+        assertEquals(resultBt4.toString(), BT8.toString());
+        assertEquals(resultEt4.toString(), ET8.toString());
+     
+//      nieuwe begin en end time aanmaken
+
+        ITime BT9 = new Time(2017, 10, 4, 11, 00);
+        ITime ET9 = new Time(2017, 10, 4, 17, 00);
+         
+        ITime BT10 = new Time(2017, 10, 4, 17, 00);
+        ITime ET10 = new Time(2017, 10, 4, 20, 00);
+        
+        // timespan en instance aanmaken
+        timeSpan = new TimeSpan(BT9, ET9);
+        instance = new TimeSpan(BT10, ET10);
+        
+//      // resultaat controleren tijd AANSLUITEND AAN ET
+        expResult = null;
+        result = instance.intersectionWith(timeSpan);
+        assertEquals(expResult, result); 
+     
+    }
+    
+        
     } 
     
-}
+
 
