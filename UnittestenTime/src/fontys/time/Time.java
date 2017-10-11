@@ -108,7 +108,7 @@ public class Time implements ITime {
     @Override
     public int compareTo(ITime t) {
         Time time = (Time) t;
-        return time.gc.compareTo(gc);
+        return time.gc.compareTo(this.gc);
     }
 
     @Override
@@ -116,5 +116,11 @@ public class Time implements ITime {
         Time t = (Time) time;
         //600000 is een factor 10 te groot en moet 60000 zijn om ms naar minuten om te rekenen
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
+    }
+    
+    @Override 
+    public String toString() { 
+        return getYear() + "-" + getMonth() + "-"+ getDay() + " "+ getHours() + ":"+ getMinutes();
+    
     }
 }

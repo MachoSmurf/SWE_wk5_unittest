@@ -104,21 +104,26 @@ public class TimeSpan implements ITimeSpan {
      */
     @Override
     public ITimeSpan unionWith(ITimeSpan timeSpan) {
-        if (bt.compareTo(timeSpan.getEndTime()) >= 0 || et.compareTo(timeSpan.getBeginTime()) <= 0) {
+        
+        ITime tsBt = timeSpan.getBeginTime();
+        ITime tsEt = timeSpan.getEndTime();        
+        
+        
+        if (tsEt.compareTo(bt) >= 0 || tsBt.compareTo(et) <= 0) {
             return null;
         }
         
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) <= 0) {
+        if (tsBt.compareTo(bt) > 0) {
             begintime = bt;
         } else {
-            begintime = timeSpan.getBeginTime();
+            begintime = tsBt;
         }
 
-        if (et.compareTo(timeSpan.getEndTime()) >= 0) {
+        if (tsEt.compareTo(et) < 0) {
             endtime = et;
         } else {
-            endtime = timeSpan.getEndTime();
+            endtime = tsEt;
         }
 
         return new TimeSpan(begintime, endtime);
@@ -129,21 +134,28 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
+        
+        ITime tsBt1 = timeSpan.getBeginTime();
+        ITime tsEt1 = timeSpan.getEndTime(); 
+   
+        if (tsEt1.compareTo(bt) >= 0 || tsBt1.compareTo(et) <= 0) {
+            return null;
+        }
 
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) >= 0) {
+        if (tsBt1.compareTo(bt) < 0) {
             begintime = bt;
         } else {
-            begintime = timeSpan.getBeginTime();
+            begintime = tsBt1;
         }
 
-        if (et.compareTo(timeSpan.getEndTime()) <= 0) {
+        if (tsEt1.compareTo(et) > 0) {
             endtime = et;
         } else {
-            endtime = timeSpan.getEndTime();
+            endtime = tsEt1;
         }
 
-        if (begintime.compareTo(endtime) >= 0) {
+        if (begintime.compareTo(endtime) <= 0) {
             return null;
         }
 
