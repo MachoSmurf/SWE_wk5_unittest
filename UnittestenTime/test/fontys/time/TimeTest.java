@@ -38,6 +38,69 @@ public class TimeTest {
     @After
     public void tearDown() {
     }
+    
+    /**
+     * test the cases that should not be allowed
+     */
+    @Test
+    public void testConstructorExceptions(){
+        
+        try{
+            testTime = new Time(1990, 0, 1, 1, 1);
+            fail("There should be an IllegalArgumentException when m<1");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 13, 1, 1, 1);
+            fail("There should be an IllegalArgumentException when m>13");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 1, 0, 1, 1);
+            fail("There should be an IllegalArgumentException when d<0");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 1, 32, 1, 1);
+            fail("There should be an IllegalArgumentException when d>31");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 1, 1, -1, 1);
+            fail("There should be an IllegalArgumentException when h<0");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 1, 1, 24, 1);
+            fail("There should be an IllegalArgumentException when h>23");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 1, 1, 1, -1);
+            fail("There should be an IllegalArgumentException when min<0");
+        }
+        catch(IllegalArgumentException e){            
+        }
+        
+        try{
+            testTime = new Time(1990, 1, 1, 1, 60);
+            fail("There should be an IllegalArgumentException when min>59");
+        }
+        catch(IllegalArgumentException e){            
+        }
+    }
 
     /**
      * Test of getDayInWeek method, of class Time.
