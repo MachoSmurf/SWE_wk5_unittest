@@ -38,7 +38,7 @@ public class Appointment implements ITimeSpan {
      * Geeft subject terug
      * @return subject String
      */
-    public String getSubject()
+    private String getSubject()
     {
         return null;
     }
@@ -49,7 +49,7 @@ public class Appointment implements ITimeSpan {
      * @return timeSpan ITimeSpan.
      */
     
-    public ITimeSpan getTimeSpan()
+    private ITimeSpan getTimeSpan()
     {
         return timeSpan;
     }
@@ -60,7 +60,7 @@ public class Appointment implements ITimeSpan {
      * @return het volgende Contact in invitees.
      */
     
-    public Iterator<Contact> invitees()
+    private Iterator<Contact> invitees()
     {
         return null;
     }
@@ -72,9 +72,9 @@ public class Appointment implements ITimeSpan {
      * @return boolean true als Contact is toegevoegd, anders false.
      */
     
-    // LET OP addContact PUBLIC!! ZIE OPRACHT 6!!
+    // LET OP addContact PROTECTED!! ZIE OPRACHT 6!!
     
-    public boolean addContact(Contact c)
+    protected boolean addContact(Contact c)
     {
         return true;
     }
@@ -85,9 +85,9 @@ public class Appointment implements ITimeSpan {
      * @param c Contact.
      */
     
-    // LET OP removeContact PUBLIC!! ZIE OPRACHT 6!!
+    // LET OP removeContact PROTECTED!! ZIE OPRACHT 6!!
     
-    public void removeContact(Contact c)
+    protected void removeContact(Contact c)
     {
         
     }
