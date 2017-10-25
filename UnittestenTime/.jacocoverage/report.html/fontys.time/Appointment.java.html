@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Appointment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Appointment.java</span></div><h1>Appointment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fontys.time;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
+
+
+
+/**
+ *
+ * @author Adaline
+ */
+public class Appointment implements ITimeSpan {
+    
+    public String subject;
+    public ITimeSpan timeSpan;
+    public ArrayList&lt;Contact&gt; invitees;
+    
+    /**
+     * Constructor
+     * @param subject string, mag empty string zijn
+     * @param timeSpan ITimespan, moet later zijn dan de huidige datum
+     */
+        
+    
+<span class="nc" id="L30">    public Appointment(String subject, ITimeSpan timeSpan) {</span>
+<span class="nc" id="L31">        this.subject = subject;</span>
+<span class="nc" id="L32">        this.timeSpan = timeSpan;</span>
+<span class="nc" id="L33">    }</span>
+
+    // LET OP METHODS PRIVATE!! ZIE OPDRACHT 6!
+    /**
+     * getSubject
+     * Geeft subject terug
+     * @return subject String
+     */
+    private String getSubject()
+    {
+<span class="nc" id="L43">        return null;</span>
+    }
+    
+    /**
+     * getTimeSpan
+     * Geeft timeSpan terug
+     * @return timeSpan ITimeSpan.
+     */
+    
+    private ITimeSpan getTimeSpan()
+    {
+<span class="nc" id="L54">        return timeSpan;</span>
+    }
+    
+    /**
+     * invitees
+     * Geeft het volgende object van invitees.
+     * @return het volgende Contact in invitees.
+     */
+    
+    private Iterator&lt;Contact&gt; invitees()
+    {
+<span class="nc" id="L65">        return null;</span>
+    }
+    
+    /**
+     * addContact
+     * voegt contact toe aan Appointment. Appointment wordt vervolgens ook toegevoegd aan de Contact omdat het Contact-object ook moet worden bijgewerkt. 
+     * @param c Contact. Contact mag niet NULL zijn, of al bestaan. Ook mag deze niet overlappen met Appointments of Contacte
+     * @return boolean true als Contact is toegevoegd, anders false.
+     */
+    
+    // LET OP addContact PROTECTED!! ZIE OPRACHT 6!!
+    
+    protected boolean addContact(Contact c)
+    {
+<span class="nc" id="L79">        return true;</span>
+    }
+    
+    /**
+     * removeContact
+     * Verwijderd Contact uit Appointment.
+     * @param c Contact.
+     */
+    
+    // LET OP removeContact PROTECTED!! ZIE OPRACHT 6!!
+    
+    protected void removeContact(Contact c)
+    {
+        
+<span class="nc" id="L93">    }</span>
+    
+    
+    @Override
+    public ITime getBeginTime() {
+<span class="nc" id="L98">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public ITime getEndTime() {
+<span class="nc" id="L103">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public int length() {
+<span class="nc" id="L108">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public void setBeginTime(ITime beginTime) {
+<span class="nc" id="L113">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public void setEndTime(ITime endTime) {
+<span class="nc" id="L118">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public void move(int minutes) {
+<span class="nc" id="L123">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public void changeLengthWith(int minutes) {
+<span class="nc" id="L128">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public boolean isPartOf(ITimeSpan timeSpan) {
+<span class="nc" id="L133">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public ITimeSpan unionWith(ITimeSpan timeSpan) {
+<span class="nc" id="L138">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    @Override
+    public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
+<span class="nc" id="L143">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+    
+   
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

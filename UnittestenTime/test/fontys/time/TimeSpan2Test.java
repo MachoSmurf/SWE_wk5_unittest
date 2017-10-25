@@ -629,6 +629,3 @@ public class TimeSpan2Test {
     
         
     } 
-    
-
-

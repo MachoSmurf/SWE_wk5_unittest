@@ -5,7 +5,6 @@
  */
 package fontys.time;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 
@@ -16,9 +15,9 @@ import java.util.Iterator;
  */
 public class Appointment implements ITimeSpan {
     
-    public String subject;
-    public ITimeSpan timeSpan;
-    public ArrayList<Contact> invitees;
+    private String subject;
+    private ITimeSpan timeSpan;
+    private ArrayList<Contact> invitees;
     
     /**
      * Constructor
@@ -32,13 +31,12 @@ public class Appointment implements ITimeSpan {
         this.timeSpan = timeSpan;
     }
 
-    // LET OP METHODS PRIVATE!! ZIE OPDRACHT 6!
     /**
      * getSubject
      * Geeft subject terug
      * @return subject String
      */
-    private String getSubject()
+    public String getSubject()
     {
         return null;
     }
@@ -49,7 +47,7 @@ public class Appointment implements ITimeSpan {
      * @return timeSpan ITimeSpan.
      */
     
-    private ITimeSpan getTimeSpan()
+    public ITimeSpan getTimeSpan()
     {
         return timeSpan;
     }
@@ -60,7 +58,7 @@ public class Appointment implements ITimeSpan {
      * @return het volgende Contact in invitees.
      */
     
-    private Iterator<Contact> invitees()
+    public Iterator<Contact> invitees()
     {
         return null;
     }
@@ -74,7 +72,7 @@ public class Appointment implements ITimeSpan {
     
     // LET OP addContact PROTECTED!! ZIE OPRACHT 6!!
     
-    protected boolean addContact(Contact c)
+    public boolean addContact(Contact c)
     {
         return true;
     }
@@ -85,9 +83,8 @@ public class Appointment implements ITimeSpan {
      * @param c Contact.
      */
     
-    // LET OP removeContact PROTECTED!! ZIE OPRACHT 6!!
-    
-    protected void removeContact(Contact c)
+       
+    public void removeContact(Contact c)
     {
         
     }
